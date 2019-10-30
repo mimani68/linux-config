@@ -9,8 +9,13 @@ filetype off                  " required
 
 "=====================================================
 "
-" 	  V I M  P L U G
-" https://github.com/junegunn/vim-plug
+" 	            V I M  P L U G 
+"
+"  https://github.com/junegunn/vim-plug
+"
+"  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
 "
 "======================================================
 "
@@ -18,8 +23,6 @@ filetype off                  " required
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
-" Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -73,28 +76,28 @@ autocmd! User goyo.vim echom 'Goyo is now loaded!'
 " LanguageClient-neovim
 " --------------------------------------
 " Language Server Protocol (LSP) support for vim and neovim.
-Plug 'autozimu/LanguageClient-neovim', {
-     \ 'branch': 'next',
-     \ 'do': 'bash install.sh',
-     \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"      \ 'branch': 'next',
+"      \ 'do': 'bash install.sh',
+"      \ }
 
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
 " Required for operations modifying multiple buffers like rename.
-set hidden
+" set hidden
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"     \ 'python': ['/usr/local/bin/pyls'],
+"     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+"     \ }
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Initialize plugin system
 call plug#end()
@@ -107,8 +110,31 @@ call plug#end()
 "
 "	      P A T H E G E N
 "
+"  Installation
+" -----------------------------------
+"  $ mkdir -p ~/.vim/autoload ~/.vim/bundle
+"  $ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+"
 "=================================================
 execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+"
+" sensible.vim
+" ---------------------------------------------
+"  Think of sensible.vim as one step above 'nocompatible' mode: a universal set of defaults that (hopefully) everyone can agree on.
+"    If you're new to Vim, you can install this as a starting point, rather than copying some random vimrc you found.
+"    If you're pair programming and you can't agree on whose vimrc to use, this can be your neutral territory.
+"    If you're administrating a server with an account that's not exclusively yours, you can scp this up to make things a bit more tolerable.
+"    If you're troubleshooting a plugin and need to rule out interference from your vimrc, having this installed will ensure you still have some basic amenities.
+"
+"
+"  $ mkdir -p ~/.vim/pack/tpope/start
+"  $ cd ~/.vim/pack/tpope/start
+"  $ git clone https://tpope.io/vim/sensible.git
+"
+
 
 "
 " S o l a r i z e d
@@ -170,8 +196,8 @@ colorscheme solarized
 " A programmable menu system is provided (simulates right clicking on a node)
 " one default menu plugin is provided to perform basic filesystem operations (create/delete/move/copy files/directories)
 " There's an API for adding your own keymappings
-
-
+"
+"
 "
 " Installation
 " -------------------------------------------
@@ -189,6 +215,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "===============================================
 "
 " 		 V v n d l e
+" ----------------------------------------------
+" Installation: 
+"
+"  $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "
 "===============================================
 "
@@ -229,6 +259,16 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'nathanaelkane/vim-indent-guides'
+" let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_default_mapping = 1
+let g:indent_guides_tab_guides = 1
+hi IndentGuidesOdd  ctermbg=white
+hi IndentGuidesEven ctermbg=lightgrey
+" colorscheme railscasts2
+set background=dark
+set ts=2 sw=2 et
+
 
 "
 " badwolf is a vim colorscheme put together by Steve Losh.
@@ -239,6 +279,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 "  have come across badwolf. I haven’t had any urge to go look for a
 "  different one since I started using it many months ago.
 Plugin 'sjl/badwolf'
+
 
 "
 " ctrlp.vim
@@ -343,6 +384,25 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '>'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_statusline_ontop=0
+let g:airline_theme='ayu_mirage'
+
+
+"
+" promptline.vim
+" -------------------------------------------------------------
+"  Simple shell prompt generator with support for powerline symbols and airline integration
+"
+"
+Bundle 'edkolev/promptline.vim'
+" let g:promptline_theme = 'airline'
+let g:promptline_theme = 'jelly'
+
+
 
 
 "
@@ -355,7 +415,7 @@ Plugin 'vim-airline/vim-airline-themes'
 " Installation
 " ---------------------------------------------------
 "    $ sudo apt install build-essential cmake python3-dev
-"    $ cd ~/.vim/bundle/YouCompleteMe
+"    $ cd ~/.vim/bundle/youcompleteme
 "    $ python3 install.py --js-completer --ts-completer
 "    or 
 "    $ ./install.py --all
@@ -379,10 +439,3 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-
-
-
