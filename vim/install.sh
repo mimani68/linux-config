@@ -40,5 +40,3 @@ python3 install.py --js-completer --ts-completer
 #  
 #
 
-
-

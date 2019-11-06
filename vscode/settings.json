@@ -1,0 +1,33 @@
+{
+    "window.zoomLevel": 1.2,
+
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    // "explorer.decorations.colors": false,
+    
+    "workbench.sideBar.location": "left",
+    "workbench.colorTheme": "Solarized Dark",
+
+    "terminal.integrated.rendererType": "dom",
+    
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+
+    "editor.suggestSelection": "first",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorWidth": 3,
+    "editor.cursorSurroundingLines": 10,
+    "editor.cursorStyle": "line",
+    "editor.fontLigatures": true,
+
+    "files.autoSave": "afterDelay",
+    "files.defaultLanguage": "js",
+
+}
